@@ -65,23 +65,15 @@ To create the token(s):
      - For older UniFi devices, omit the URL path.
      - Remove `https://` from the URL.
 
-### Testing Changes - UDM-Pro
-To test the configuration and force an update on a UDM-Pro:
+### Testing Changes on my Cloud Gateway Ultra
 
-1. SSH into your UniFi device.
+To test the configuration and force an update:
+
+1. Open a debug console: `UniFi Devices` -> `Cloud Gateway Ultra` -> Click on it -> Choose `Settings` tab -> in `Manage` section click on `Debug`
 2. Run `ps aux | grep inadyn`.
 3. Note the configuration file path.
 4. Run `inadyn -n -1 --force -f <config-path>` (e.g., `inadyn -n -1 --force -f /run/ddns-eth4-inadyn.conf`).
 5. Check `/var/log/messages` for related error messages.
-
-### Testing Changes - USG
-To test the configuration and force an update on a USG:
-
-1. SSH into your USG device.
-2. Run `ls /run/ddclient/` (e.g.: `/run/ddclient/ddclient_eth0.pid`)
-3. Note the pid file path as this will tell you what configuration to use. (e.g.: `ddclient_eth0`)
-4. Run `sudo ddclient -daemon=0 -verbose -noquiet -debug -file /etc/ddclient/<config>.conf` (e.g., `sudo ddclient -daemon=0 -verbose -noquiet -debug -file /etc/ddclient/ddclient_eth0.conf`).
-5. This should output `SUCCESS` when the DNS record is set.
 
 ### Important Notes!
 
