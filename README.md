@@ -55,3 +55,13 @@ UniFi devices do not natively support Cloudflare as a DDNS provider. This script
 ## 🛠️ **Testing & Troubleshooting**
 
 Using this script with various Ubiquiti devices and different UniFi software versions can introduce unique challenges. If you encounter issues, start by checking the FAQ in `/docs/faq.md`. If you don’t find a solution, you can ask a question on the [discussions page](https://github.com/willswire/unifi-ddns/discussions/new?category=q-a). If the problem persists, please raise an issue [here](https://github.com/willswire/unifi-ddns/issues).
+
+### Testing Changes on Cloud Gateway Ultra
+
+To test the configuration and force an update:
+
+1. Open a debug console: `UniFi Devices` -> `Cloud Gateway Ultra` -> Click on it -> Choose `Settings` tab -> in `Manage` section click on `Debug`
+2. Run `ps aux | grep inadyn`.
+3. Note the configuration file path.
+4. Run `inadyn -n -1 --force -f <config-path>` (e.g., `inadyn -n -1 --force -f /run/ddns-eth4-inadyn.conf`).
+5. Check `/var/log/messages` for related error messages.
